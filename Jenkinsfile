@@ -13,13 +13,14 @@ pipeline {
       }
     }
     
-   /* stage ('Check-The-Secrets') {
-      steps {
+    stage ('Check-Git-Secrets'){
+        steps{
         sh 'rm trufflehog || true'
-        sh 'docker run gesellix/trufflehog --json https://github.com/Natashanuar/demo.git > trufflehog'
+        sh 'docker run gesellix/trufflehog --json https://github.com/Natashanuar/shoppingcartapp-web-V2.git > trufflehog'
         sh 'cat trufflehog'
-      }
-    }*/
+       }
+    }
+    
     stage ('Software Composition Analysis') {
       steps {
          sh 'rm -r dependency-check* || true' 
@@ -33,12 +34,36 @@ pipeline {
       sh 'mvn clean package'
        }
     }
-    /*stage ('Deploy-To-Tomcat') {
+    
+     stage ('SAST') {
+      steps {
+        withSonarQubeEnv('sonar') {
+          sh 'mvn sonar:sonar'
+          sh 'cat target/sonar/report-task.txt'
+        }
+      }
+    }
+    
+    stage ('Build Execute Jar') {
+      steps {
+        sh 'mvn clean package'
+         }
+       }
+    
+    stage ('Deploy-To-Tomcat') {
             steps {
            sshagent(['tomcat']) {
-                sh 'scp -o StrictHostKeyChecking=no target/*.war ubuntu@35.247.137.87:/home/ubuntu/prod/apache-tomcat-8.5.61/webapps/webapp.war'
+                sh 'scp -o StrictHostKeyChecking=no target/*.war ubuntu@35.225.146.167:/home/natashaanuar98/apache-tomcat-7.0.107/webapps/webapp.war'
               }      
-           }      
-    }*/ 
+           }       
+    }
+    
+     stage ('DAST') {
+      steps {
+        sshagent(['zap']) {
+         sh 'ssh -o  StrictHostKeyChecking=no ubuntu@35.193.155.239 "docker run -t owasp/zap2docker-stable zap-baseline.py -t http://35.225.146.167:8080/shoppingcartapp-web-V2/" || true'
+        }
+      }
+    }
   }
 }
