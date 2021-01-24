@@ -21,18 +21,18 @@ pipeline {
        }
     }
     
-    /*stage ('Software Composition Analysis') {
+    stage ('Software Composition Analysis') {
       steps {
-        sh 'rm owasp* || true'
+       /* sh 'rm owasp* || true'
          sh 'wget "https://raw.githubusercontent.com/Natashanuar/demo/master/owasp-dependency-check.sh" '
          sh 'chmod +x owasp-dependency-check.sh'
          sh 'bash owasp-dependency-check.sh'
-         sh 'cat /var/lib/jenkins/OWASP-Dependency-Check/reports/dependency-check-report.xml'
+         sh 'cat /var/lib/jenkins/OWASP-Dependency-Check/reports/dependency-check-report.xml'*/
          sh 'rm -r dependency-check* || true' 
          sh 'wget https://github.com/jeremylong/DependencyCheck/releases/download/v6.0.3/dependency-check-6.0.3-release.zip'
          sh 'unzip dependency-check-6.0.3-release.zip'
          sh './dependency-check/bin/dependency-check.sh --scan ./* --enableRetired -f "ALL" '
-         dependencyCheck additionalArguments: ''' 
+        /* dependencyCheck additionalArguments: ''' 
                     -o "./" 
                     -s "./"
                     -f "ALL" 
@@ -42,7 +42,7 @@ pipeline {
                }
     }*/
     
-     stage ('OWASP Dependency-Check Vulnerabilities') {  
+    /* stage ('OWASP Dependency-Check Vulnerabilities') {  
     steps {  
      withMaven(maven : 'mvn-3.6.3') {  
       sh 'mvn dependency-check:check'  
@@ -50,7 +50,7 @@ pipeline {
    
      dependencyCheckPublisher pattern: 'target/dependency-check-report.xml'  
     }  
-   }  
+   }  */
     
     
     stage ('Build') {
