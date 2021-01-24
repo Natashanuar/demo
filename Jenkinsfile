@@ -35,7 +35,7 @@ pipeline {
        }
     }
     
-     stage ('SAST') {
+   /*  stage ('SAST') {
       steps {
         withSonarQubeEnv('sonar') {
           sh 'mvn sonar:sonar'
@@ -64,6 +64,6 @@ pipeline {
          sh 'ssh -o  StrictHostKeyChecking=no ubuntu@35.193.155.239 "docker run -t owasp/zap2docker-stable zap-baseline.py -t http://35.225.146.167:8080/shoppingcartapp-web-V2/" || true'
         }
       }
-    }
+    }*/
   }
 }
