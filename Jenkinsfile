@@ -74,17 +74,17 @@ pipeline {
       steps {
         sh 'mvn clean package'
          }
-       }
+       }*/
     
     stage ('Deploy-To-Tomcat') {
             steps {
            sshagent(['tomcat']) {
-                sh 'scp -o StrictHostKeyChecking=no target/*.war ubuntu@35.225.146.167:/home/natashaanuar98/apache-tomcat-7.0.107/webapps/webapp.war'
+                sh 'scp -o StrictHostKeyChecking=no target/*.war ubuntu@35.238.153.62:/home/natashaanuar98/prod/apache-tomcat-7.0.107/webapps/webapp.war'
               }      
            }       
     }
     
-     stage ('DAST') {
+     /*stage ('DAST') {
       steps {
         sshagent(['zap']) {
          sh 'ssh -o  StrictHostKeyChecking=no ubuntu@35.193.155.239 "docker run -t owasp/zap2docker-stable zap-baseline.py -t http://35.225.146.167:8080/shoppingcartapp-web-V2/" || true'
