@@ -79,7 +79,7 @@ pipeline {
    stage ('Deploy-To-Tomcat') {
             steps {
            //sshagent(['tomcat']) {
-             sh 'cp -f target/*.war /prod/apache-tomcat-9.0.41/webapps/webapp.war'
+             sh 'sudo cp -f target/*.war /prod/apache-tomcat-9.0.41/webapps/webapp.war'
 
               //  sh 'scp -o StrictHostKeyChecking=no target/*.war ubuntu@35.239.79.249:/home/natasha_1998/prod/apache-tomcat-9.0.41/webapps/webapp.war'
               }      
