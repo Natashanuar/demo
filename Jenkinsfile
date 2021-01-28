@@ -3,7 +3,7 @@ pipeline {
   tools {
     maven 'Maven'
   }
-  stages {
+  /*stages {
     stage ('Initialize') {
       steps {
         sh '''
@@ -49,7 +49,7 @@ pipeline {
        }
     }
     
-    stage ('SAST') {
+    /*stage ('SAST') {
       steps {
         withSonarQubeEnv('sonar') {
           sh 'mvn sonar:sonar'
@@ -57,15 +57,15 @@ pipeline {
         }
       }
     }
-   
+   */
     
    stage ('Deploy-To-Tomcat') {
             steps {
            sshagent(['tomcat']) {
             // sh 'cp target/*.war /home/tas/prod/apache-tomcat-9.0.41/webapps/webapp.war'
 
-            sh 'scp -o StrictHostKeyChecking=no target/*.war ubuntu@34.122.205.85'
-         //    :/var/lib/tomcat8/webapps/webapp.war
+            sh 'scp -o StrictHostKeyChecking=no target/*.war ubuntu@34.122.205.85:http://34.122.205.85:8080/var/lib/tomcat8/webapps/webapp.war'
+     
               }      
            }       
    }
