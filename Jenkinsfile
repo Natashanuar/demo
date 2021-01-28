@@ -29,7 +29,7 @@ pipeline {
          sh './dependency-check/bin/dependency-check.sh --scan ./* --enableRetired -f "ALL" '
       }
  }
-       /*stage ('Software Composition Analysis') {
+       stage ('Software Composition Analysis') {
             steps {
                 dependencyCheck additionalArguments: ''' 
                     -o "./" 
@@ -63,9 +63,7 @@ pipeline {
             steps {
            sshagent(['tomcat']) {
             // sh 'cp target/*.war /home/tas/prod/apache-tomcat-9.0.41/webapps/webapp.war'
-
-            sh 'scp -o StrictHostKeyChecking=no target/*.war ubuntu@34.122.205.85 "http://34.122.205.85:8080/var/lib/tomcat8/webapps/webapp.war" '
-     
+      sh 'scp -o StrictHostKeyChecking=no target/*.war ubuntu@34.122.205.85 "http://34.122.205.85:8080/var/lib/tomcat8/webapps/webapp.war" '
               }      
            }       
    }
@@ -73,8 +71,7 @@ pipeline {
     
    /* stage ('DAST') {
       steps {
-         sh 'http://loclhost:8082/ "docker run -t owasp/zap2docker-stable zap-baseline.py -t http://localhost:8080/webapp/" || true'
-       //  sh 'ssh -o  StrictHostKeyChecking=no ubuntu@35.193.155.239 "docker run -t owasp/zap2docker-stable zap-baseline.py -t http://35.225.146.167:8080/shoppingcartapp-web-V2/" || true'
+          sh 'ssh -o  StrictHostKeyChecking=no ubuntu@35.193.155.239 "docker run -t owasp/zap2docker-stable zap-baseline.py -t http://35.225.146.167:8080/shoppingcartapp-web-V2/" || true'
         }
       }*/
     
