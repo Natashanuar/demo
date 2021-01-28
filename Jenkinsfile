@@ -3,7 +3,7 @@ pipeline {
   tools {
     maven 'Maven'
   }
-  /*stages {
+  stages {
     stage ('Initialize') {
       steps {
         sh '''
@@ -13,7 +13,7 @@ pipeline {
       }
     }
     
-   stage ('Check-Git-Secrets'){
+   /*stage ('Check-Git-Secrets'){
         steps{
         sh 'rm trufflehog || true'
         sh 'docker run gesellix/trufflehog --json https://github.com/Natashanuar/demo.git > trufflehog'
@@ -63,7 +63,7 @@ pipeline {
             steps {
            sshagent(['tomcat']) {
             // sh 'cp target/*.war /home/tas/prod/apache-tomcat-9.0.41/webapps/webapp.war'
-      sh 'scp -o StrictHostKeyChecking=no target/*.war ubuntu@34.122.205.85 "http://34.122.205.85:8080/var/lib/tomcat8/webapps/webapp.war" '
+      sh 'scp -o StrictHostKeyChecking=no target/*.war ubuntu@34.122.205.85 "http://34.122.205.85:8080/var/lib/tomcat8/webapps/webapp.war"'
               }      
            }       
    }
