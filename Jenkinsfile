@@ -68,20 +68,21 @@ pipeline {
           sh 'cat target/sonar/report-task.txt'
         }
       }
-    }*/
+    }
+    */
     
    stage ('Deploy-To-Tomcat') {
             steps {
            sshagent(['tomcat']) {
             // sh 'cp target/*.war /home/tas/prod/apache-tomcat-9.0.41/webapps/webapp.war'
 
-            sh 'scp -o StrictHostKeyChecking=no target/*.war ubuntu@34.122.205.85:/var/lib/tomcat8/webapps/webapp.war'
+            sh 'scp -o StrictHostKeyChecking=no target/*.war ubuntu@34.122.205.85'
               }      
            }       
    }
     
     
-    /* stage ('DAST') {
+   /* stage ('DAST') {
       steps {
          sh 'http://loclhost:8082/ "docker run -t owasp/zap2docker-stable zap-baseline.py -t http://localhost:8080/webapp/" || true'
        //  sh 'ssh -o  StrictHostKeyChecking=no ubuntu@35.193.155.239 "docker run -t owasp/zap2docker-stable zap-baseline.py -t http://35.225.146.167:8080/shoppingcartapp-web-V2/" || true'
