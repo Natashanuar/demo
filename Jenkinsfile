@@ -13,7 +13,7 @@ pipeline {
       }
     }
     
-   /*stage ('Check-Git-Secrets'){
+   stage ('Check-Git-Secrets'){
         steps{
         sh 'rm trufflehog || true'
         sh 'docker run gesellix/trufflehog --json https://github.com/Natashanuar/demo.git > trufflehog'
@@ -21,7 +21,7 @@ pipeline {
        }
     }
     
- stage ('Software Composition Analysis') {
+ /*stage ('Software Composition Analysis') {
       steps {
          sh 'rm -r dependency-check* || true' 
          sh 'wget https://github.com/jeremylong/DependencyCheck/releases/download/v6.0.3/dependency-check-6.0.3-release.zip'
