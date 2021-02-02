@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>DEVSECOPS Jumbotron Template for Bootstrap</title>
+    <title>DEVSECOPS Project</title>
 
 
     <!-- Custom styles for this template -->
