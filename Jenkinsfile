@@ -21,7 +21,7 @@ pipeline {
        }
     }
     
- /*stage ('Software Composition Analysis') {
+ stage ('Software Composition Analysis') {
       steps {
          sh 'rm -r dependency-check* || true' 
          sh 'wget https://github.com/jeremylong/DependencyCheck/releases/download/v6.0.3/dependency-check-6.0.3-release.zip'
@@ -29,7 +29,7 @@ pipeline {
          sh './dependency-check/bin/dependency-check.sh --scan ./* --enableRetired -f "ALL" '
       }
  }
-       stage ('Software Composition Analysis') {
+       /*stage ('Software Composition Analysis') {
             steps {
                 dependencyCheck additionalArguments: ''' 
                     -o "./" 
@@ -49,7 +49,7 @@ pipeline {
        }
     }
     
-/*    stage ('SAST') {
+    stage ('SAST') {
       steps {
         withSonarQubeEnv('sonar') {
           sh 'mvn sonar:sonar'
@@ -57,7 +57,7 @@ pipeline {
         }
       }
     }
-*/   
+/*
     
    stage ('Deploy-To-Tomcat') {
             steps {
@@ -79,7 +79,7 @@ pipeline {
          //sh 'ssh -o  StrictHostKeyChecking=no natasha_1998@34.121.143.143 "docker run -t owasp/zap2docker-stable zap-baseline.py -t http://130.211.221.9:8080/webapp/" || true'
         }
       }
-   //}
+   //}*/
     
   }
 }
